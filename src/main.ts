@@ -1,10 +1,13 @@
-import { NestFactory } from '@nestjs/core';
+import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
+import { AtGuard } from './common/guards';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
-  await app.listen(3333);
+  // const reflector = new Reflector();        bunun yerine app.module e  providers eklendi
+  // app.useGlobalGuards(new AtGuard(reflector));
+  await app.listen(3000);
 }
 bootstrap();
